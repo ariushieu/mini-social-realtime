@@ -1,9 +1,15 @@
-import { Module } from "@nestjs/common";
+import { Module, NestModule, MiddlewareConsumer } from "@nestjs/common";
 import { ChatService } from "./chat.service";
 import { ChatController } from "./chat.controller";
+import { ChatMiddleware } from "../../common/middlewares/chat.middleware";
 
 @Module({
     controllers: [ChatController],
-    providers: [ChatService]
+    providers: [ChatService],
+
 })
-export class ChatModule {}
+export class ChatModule implements NestModule {
+    configure(consumer: MiddlewareConsumer) {
+        consumer.apply(ChatMiddleware).forRoutes('chat');
+    }
+}
