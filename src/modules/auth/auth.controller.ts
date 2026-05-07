@@ -6,6 +6,7 @@ import { CurrentUser } from "../../common/decorators/current-user.decorator";
 export class AuthController{
     @Get('me')
     @UseGuards(JwtAuthGuard)
+    //JwtAuthGuard - JwtStrategy - validate() - CurrentUser decorator - user object
     getMe(@CurrentUser() user) {
         return{
             message: 'Thông tin người dùng đã được xác thực',
