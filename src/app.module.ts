@@ -3,9 +3,10 @@ import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ChatModule } from './modules/chat/chat.module';
+import { AuthModule } from './modules/auth/auth.module';
 
 @Module({
-  imports: [ConfigModule.forRoot(), ChatModule],
+  imports: [ConfigModule.forRoot(), ChatModule, AuthModule],
   controllers: [AppController],
   providers: [AppService],
 })
